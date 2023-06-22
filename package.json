@@ -1,0 +1,26 @@
+{
+  "name": "map",
+  "version": "1.0.0",
+  "description": "bluestar map",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sylvinrodz/bluestarMap.git"
+  },
+  "keywords": [
+    "bluestar",
+    "bluestar",
+    "map",
+    "location",
+    "india"
+  ],
+  "author": "skilliza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sylvinrodz/bluestarMap/issues"
+  },
+  "homepage": "https://github.com/sylvinrodz/bluestarMap#readme"
+}
