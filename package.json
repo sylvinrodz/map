@@ -22,5 +22,12 @@
   "bugs": {
     "url": "https://github.com/sylvinrodz/bluestarMap/issues"
   },
-  "homepage": "https://github.com/sylvinrodz/bluestarMap#readme"
+  "homepage": "https://github.com/sylvinrodz/bluestarMap#readme",
+  "dependencies": {
+    "firebase": "^9.23.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.4"
+  }
 }
