@@ -24,7 +24,8 @@
   },
   "homepage": "https://github.com/sylvinrodz/bluestarMap#readme",
   "dependencies": {
-    "firebase": "^9.23.0"
+    "firebase": "^9.23.0",
+    "pdfobject": "^2.2.12"
   },
   "devDependencies": {
     "webpack": "^5.88.0",
