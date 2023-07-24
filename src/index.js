@@ -17,18 +17,21 @@ const db = getFirestore(app);
 
 //get Marker from Database
 const markerCollection = collection(db, "markers");
-const markerSnapshot = await getDocs(markerCollection);
+const statusQuery = query(markerCollection,where("status", "==", true));
+const markerSnapshot = await getDocs(statusQuery);
 
 // Initialize the map
 var map = L.map("map", {
+  
   minZoom: 5,
   maxZoom: 12,
+  zoomControl: false
 });
 map.setView([23, 78.9629], 5);
 // Create cluster options
 var clusterOptions = {
   spiderfyOnMaxZoom: true,
-  showCoverageOnHover: true,
+  showCoverageOnHover: false,
   zoomToBoundsOnClick: true,
 };
 
@@ -41,7 +44,7 @@ if (L.Browser.ielt9) {
 }
 
 //Add Zoome buttons position
-map.zoomControl.setPosition("topright");
+// map.zoomControl.setPosition("topright");
 
 // Add the tile layer (Mapbox)
 L.tileLayer(
@@ -76,11 +79,9 @@ const addMarker = async (markerSnapshot)=>{
     if (element) {
       element = element.data();
       markers.push(
-        L.marker([element.lat, element.long], { icon: greenIcon }).bindPopup(
-          "<h5>" +
-            element.city +
-            '</h5> <br /> <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pdfModal" onclick=\"(viewPDF(\'' + element.file  + '\'))"\>View PDF</button>'
-        )
+        L.marker([element.lat, element.long], { icon: greenIcon }).on('click', (e)=> {
+          viewPDF(element);
+      })
       );
     }
   });
@@ -89,6 +90,12 @@ const addMarker = async (markerSnapshot)=>{
 markerCluster.addLayers(markers);
 map.addLayer(markerCluster);
 
+// .bindPopup(
+//   "<h5>" +
+//     element.city +
+//     '</h5> <br /> <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pdfModal" onclick=\"(viewPDF(\'' + element.file  + '\'))"\>View PDF</button>'
+// )
+
 }
 
 addMarker(markerSnapshot);
@@ -96,6 +103,7 @@ addMarker(markerSnapshot);
 //get State 
 var states = [];
 var stateSelect = document.getElementById('stateSelect');
+var showAll = document.getElementById('showAll');
 const getState = async () => {
   const response = await fetch('assets/json/india.json');
   const jsonresp = await response.json(); //extract JSON from the http response
@@ -108,20 +116,42 @@ getState();
 
 
 //get data based on state
+const showAllMarker = async () => {
+  let markerSnapshotLocal = await getDocs(statusQuery);
+  addMarker(markerSnapshotLocal);
+  map.setView([23, 78.9629], 5);
+}
+
 const onStateChange = async () => {
    var selectedState = states.find((res)=> res.id == stateSelect.value);
   let Query;
   let markerSnapshotLocal;
   if(stateSelect.value != "Select State"){
-     Query = query(markerCollection,where("state", "==", selectedState.name));
+     Query = query(markerCollection,where("state", "==", selectedState.name),where("status", "==", true));
      markerSnapshotLocal = await getDocs(Query);
      addMarker(markerSnapshotLocal);
      map.setView([selectedState.latitude, selectedState.longitude], 7);
   }else{
-    markerSnapshotLocal = await getDocs(markerCollection);
-    addMarker(markerSnapshotLocal);
-    map.setView([23, 78.9629], 5);
+    showAllMarker();
   }
 }
 
 stateSelect.addEventListener("change", onStateChange);
+showAll.addEventListener("click",showAllMarker);
+
+//Animation
+$(".start").click(function(){
+  console.log("click");
+  $(".leftContainer").addClass("hidden");
+  setTimeout(() => {
+    $(".sideborder").addClass("hidden");
+    $(".coverAll").css("display", "none");
+    
+  }, 500);
+  setTimeout(()=>{
+    $(".selectStyle").css("opacity", 1);
+    L.control.zoom({
+      position: 'topright'
+  }).addTo(map);
+  },1000)
+});

@@ -17,74 +17,329 @@
       width: 100vw;
       height: 100vh;
     }
-    /* .modal-dialog {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+    .leftContainer{
+      float: left;
+    height: 100%;
+    width: 30.5625em;
+    background: #fff;
+    position: absolute;
+    color: #383838;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Work Sans';
+    overflow: hidden;
+    -webkit-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    -moz-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    -ms-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    -o-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    pointer-events: auto;
+      z-index: 999;
+    }
+    .main{
+      position: absolute;
+    top: 0;
+    left: 0;
+    transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) transform;
+    transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) -webkit-transform;
+    transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) -moz-transform;
+    -webkit-transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) transform;
+    -webkit-transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) -webkit-transform;
+    -webkit-transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) -moz-transform;
+    -moz-transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) transform;
+    -moz-transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) -webkit-transform;
+    -moz-transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) -moz-transform;
+    padding: 3.28125em 3em 0 3.28125em;
+    width: 30.5625em;
+    }
+    .coverAll{
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0);
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 998;
+    }
+   .titleImg {
+    width: 80%;
 }
 
-.modal-content {
-  height: auto;
-  min-height: 100%;
-  border-radius: 0;
-} */
+.hidden {
+      width: 0em;
+      pointer-events: none; }
+.copy {
+    margin-top: 1.7em;
+    font-size: 1.5em;
+    margin-bottom: 1.7em;
+    line-height: 1.65;
+}
+.start:hover {
+    background: #1b5ea5;
+}
+
+.start {
+  display: none;
+    cursor: pointer;
+    background: #004EA0;
+    text-transform: uppercase;
+    font-size: 1.4em;
+    line-height: 1.8em;
+    display: block;
+    padding: 0.22em 0.45em 0.2em;
+    text-align: center;
+    width: 80%;
+    font-weight: bold;
+    color: white;
+}
+.sideborder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border: 2.0625em solid #fff;
+    pointer-events: none;
+    -webkit-transition: 400ms border-width ease-out;
+    -moz-transition: 400ms border-width ease-out;
+    -ms-transition: 400ms border-width ease-out;
+    -o-transition: 400ms border-width ease-out;
+    transition: 400ms border-width ease-out; 
+    z-index: 998;
+  }
+     .sideborder.hidden {
+      border-width: 0; }
+.progress{
+    background: #ddd;
+    text-transform: uppercase;
+    font-size: 1.8em;
+    line-height: 1.8em;
+    display: block;
+    padding: 0.22em 0.45em 0.2em;
+    text-align: center;
+    width: 80%;
+    font-weight: bold;
+    
+}
+.text {
+    margin-right: 0.25em;
+    color: black;
+}
+.selectStyle{
+  position: absolute;top: 0.5%;left:0.5%;z-index: 900;width: 300px;opacity: 0;
+  -webkit-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    -moz-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    -ms-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    -o-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+}
+.show{
+  opacity: 1;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 3em 3.28125em 3.28125em;
+    width: 30.5625em; }
+    .credits {
+        width: 90%; }
+        @media screen and (min-width: 800px) {
+   .illustration {
+    display: none; } }
+
+@media screen and (max-width: 800px) {
+   
+     .panel {
+      width: 100%;
+      padding: 2.0625em; }
+     .main .main-content {
+      padding-top: 2em; }
+     .illustration {
+      background: url("../img/start-mobile.jpg") center;
+      background-size: cover; }
+     .main,
+     .about {
+      padding: 2.0625em;
+      width: 100%; }
+     h1 {
+      font-size: 3.5em; }
+     .main .copy {
+      margin-top: 1em;
+      margin-bottom: 1.5em; }
+     .progress,
+     .start {
+      width: 100%;
+      font-size: 200%; }
+     .about .copy {
+      font-size: 140%; }
+     .about .close {
+      top: 2.7em; }
+     footer {
+      padding: 0 2.0625em 2.0625em;
+      width: 100%; }
+       footer .sharing {
+        float: right;
+        margin-bottom: 0; }
+       footer .credits {
+        width: 70%; }
+  .in-app .panel {
+    display: none; }
+  .in-app .panel.visible {
+    display: block !important; } }
+
+@media screen and (max-width: 800px) and (orientation: landscape) {
+   .about .copy {
+    font-size: 100%; }
+   .main .illustration {
+    display: none; }
+   .main .main-content {
+    padding-top: 0; } }
+
+@media screen and (max-width: 320px) and (max-height: 500px) {
+  .about .copy {
+    font-size: 130%; } }
+
+@media screen and (min-width: 2100px) {
+  html {
+    font-size: 21px; } }
+
+@media screen and (max-width: 2000px) {
+  html {
+    font-size: 20px; } }
+
+@media screen and (max-width: 1900px) {
+  html {
+    font-size: 19px; } }
+
+@media screen and (max-width: 1800px) {
+  html {
+    font-size: 18px; } }
+
+@media screen and (max-width: 1700px) {
+  html {
+    font-size: 17px; } }
+
+@media screen and (max-width: 1500px) {
+  html {
+    font-size: 16px; } }
+
+@media screen and (max-width: 1300px) {
+  html {
+    font-size: 15px; } }
+
+@media screen and (max-width: 1100px) {
+  html {
+    font-size: 14px; } }
+
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 13px; } }
+
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 13px; } }
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 12px; } }
+
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 11px; } }
+
+@media screen and (max-width: 450px) {
+  html {
+    font-size: 10px; } }
+
+@media screen and (max-width: 350px) {
+  html {
+    font-size: 9px; } }
   </style>
-  
+
 </head>
 
 <body>
+  <div class="sideborder" data-ref="border"></div>
+  <div class="leftContainer" id="letfCover">
+    <div class="main">
+      <img class="titleImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Blue_Star_primary_logo.png/1200px-Blue_Star_primary_logo.png?20200505065905" />
+      <p class="copy">Blue Star Ltd is an Indian multinational <strong>home appliances company </strong>, headquartered in <strong>Mumbai</strong>. </p>
+      <div class="start" data-ref="start" style="display: block;">Enter the map</div>
+     
+    </div>
+    <footer data-ref="titlescreen_footer">
+     
+      <div class="credits">
+        Made by <strong><a href="http://www.skilliza.com">Skilliza</a></strong>, a digital studio specialized in Map experiences. <a href="mailto:kinshuk@skilliza.com">Get in touch</a>
+      </div>
+    </footer>
+  </div>
+   <div class="coverAll" id="cover">
+
+  </div>
   <!-- Vertically centered scrollable modal -->
   <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-dialog-scrollable" >
-  <div class="modal-content">
-    <div class="modal-header">
-      <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1> -->
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      <div id="example1"></div>
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="title"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="example1"></div>
 
+        </div>
+
+      </div>
     </div>
-    
   </div>
-</div>
-</div>
 
-  <div style="position: absolute;top: 0.5%;left:0.5%;z-index: 999;width: 300px;">
-    <select class="form-select" aria-label="State" id="stateSelect">
-      <option selected value="Select State">Select State</option>
-    </select>
+  <div class="selectStyle">
+
+    <div class="input-group">
+      <select class="form-select" aria-label="State" id="stateSelect">
+        <option selected value="Select State">Select State</option>
+      </select>
+
+      <button class="btn btn-primary" type="button" id="showAll">Show All</button>
+    </div>
   </div>
 
   <div id="map"></div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js" integrity="sha512-lDL6DD6x4foKuSTkRUKIMQJAoisDeojVPXknggl4fZWMr2/M/hMiKLs6sqUvxP/T2zXdrDMbLJ0/ru8QSZrnoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js"
+    integrity="sha512-lDL6DD6x4foKuSTkRUKIMQJAoisDeojVPXknggl4fZWMr2/M/hMiKLs6sqUvxP/T2zXdrDMbLJ0/ru8QSZrnoQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="bundle.js"></script>
-  <!-- <script src="./map.js"></script> -->
   <script>
-    if(PDFObject.supportsPDFs){
-   console.log("Yay, this browser supports inline PDFs.");
-} else {
-   console.log("Boo, inline PDFs are not supported by this browser");
-}
-    const pdfModal = document.getElementById('pdfModal')
-    const viewPDF =(link) => {
-  if (!link)
-    return;
+    //     if(PDFObject.supportsPDFs){
+    //    console.log("Yay, this browser supports inline PDFs.");
+    // } else {
+    //    console.log("Boo, inline PDFs are not supported by this browser");
+    // }
+    const title = document.getElementById('title');
+    const pdfModal = document.getElementById('pdfModal');
+    const viewPDF = (element) => {
+      if (!element.file)
+        return;
 
-    var options = {
-   width: "100%",
-   height: "100vh"
-};
-    PDFObject.embed(link, "#example1",options);
-  // window.open(link);
+      var options = {
+        width: "100%",
+        height: "100vh"
+      };
+      title.innerHTML = element.title;
+      PDFObject.embed(element.file, "#example1", options);
+      $('#pdfModal').modal('show');
+      // window.open(link);
 
-};
+    };
   </script>
 </body>
 
