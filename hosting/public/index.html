@@ -2,12 +2,35 @@
 <html>
 
 <head>
+  <title>BLUESTAR SUCCESS STORIES</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap" rel="stylesheet">
   <style>
+ 
+
+@font-face {
+  font-family: 'Miso';
+  src: url("../fonts/Miso.woff2") format("woff2"), url("../fonts/Miso.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Miso';
+  src: url("../fonts/Miso-Bold.woff2") format("woff2"), url("../fonts/Miso-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'AlternateGothic3';
+  src: url("assets/fonts/Alternate\ Gothic\ No2\ D\ Regular.ttf") format("ttf"), url("assets/fonts/Alternate\ Gothic\ No2\ D\ Regular.ttf") format("woff");;
+  font-weight: normal;
+  font-style: normal; }
     * {
       padding: 0;
       margin: 0;
@@ -17,11 +40,317 @@
       width: 100vw;
       height: 100vh;
     }
+    .leftContainer{
+      float: left;
+    height: 100%;
+    width: 30.5625em;
+    background: #fff;
+    position: absolute;
+    color: #383838;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Work Sans';
+    overflow: hidden;
+    -webkit-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    -moz-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    -ms-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    -o-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    pointer-events: auto;
+      z-index: 999;
+    }
+    .main{
+      font-family: 'Work Sans', sans-serif;
+      position: absolute;
+    top: 0;
+    left: 0;
+    transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) transform;
+    transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) -webkit-transform;
+    transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) -moz-transform;
+    -webkit-transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) transform;
+    -webkit-transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) -webkit-transform;
+    -webkit-transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) -moz-transform;
+    -moz-transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) transform;
+    -moz-transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) -webkit-transform;
+    -moz-transition: 500ms cubic-bezier(0.165, 0.84, 0.44, 1) -moz-transform;
+    padding: 3.28125em 3em 0 3.28125em;
+    width: 30.5625em;
+    }
+    .coverAll{
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0);
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 998;
+    }
+   .titleImg {
+    width: 40%;
+}
+
+.hidden {
+      width: 0em;
+      pointer-events: none; }
+.copy {
+  font-family: 'Work Sans', sans-serif;
+    margin-top: 0.5em;
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.65;
+}
+.start:hover {
+    background: #e6df22;
+}
+
+.start {
+  display: none;
+    cursor: pointer;
+    background: #fff725;
+    text-transform: uppercase;
+    font-size: 1.8em;
+    line-height: 1.8em;
+    display: block;
+    padding: 0.2em 0.45em 0.2em;
+    text-align: center;
+    width: 80%;
+    font-family: 'AlternateGothic3';
+}
+.sideborder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border: 2.0625em solid #fff;
+    pointer-events: none;
+    -webkit-transition: 400ms border-width ease-out;
+    -moz-transition: 400ms border-width ease-out;
+    -ms-transition: 400ms border-width ease-out;
+    -o-transition: 400ms border-width ease-out;
+    transition: 400ms border-width ease-out; 
+    z-index: 998;
+  }
+     .sideborder.hidden {
+      border-width: 0; }
+.progress{
+    background: #ddd;
+    text-transform: uppercase;
+    font-size: 1.8em;
+    line-height: 1.8em;
+    display: block;
+    padding: 0.22em 0.45em 0.2em;
+    text-align: center;
+    width: 80%;
+    font-weight: bold;
+    
+}
+.text {
+    margin-right: 0.25em;
+    color: black;
+}
+.selectStyle{
+  position: absolute;top: 0.5%;left:0.5%;z-index: 900;width: 300px;opacity: 0;
+  -webkit-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    -moz-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    -ms-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    -o-transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+    transition: 600ms width cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity linear;
+}
+.show{
+  opacity: 1;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 3em 3.28125em 3.28125em;
+    width: 30.5625em; }
+    .credits {
+        width: 90%; }
+        @media screen and (min-width: 800px) {
+   .illustration {
+    display: none; } }
+  .sharing {
+    margin-bottom: 1em; }
+  .sharing:before,.sharing:after {
+      content: " ";
+      display: table; }
+  .sharing:after {
+      clear: both; }
+  .sharing .icons:before,.sharing .icons:after {
+      content: " ";
+      display: table; }
+  .sharing .icons:after {
+      clear: both; }
+  .sharing .icon {
+      height: 3em;
+      width: 3em;
+      float: left;
+      background: url("assets/sharing.png") no-repeat;
+      background-size: auto 100%;
+      opacity: 0.25;
+      cursor: pointer; }
+    .sharing .icon.social_t {
+        background-position: 0 0; }
+    .sharing .icon.social_f {
+        background-position: 50% 0; }
+    .sharing .icon.social_l {
+        background-position: 100% 0; }
+    .sharing .icon:hover {
+        opacity: 0.8; }
+
+@media screen and (max-width: 800px) {
+   
+     .panel {
+      width: 100%;
+      padding: 2.0625em; }
+     .main .main-content {
+      padding-top: 2em; }
+     .illustration {
+      background: url("../img/start-mobile.jpg") center;
+      background-size: cover; }
+     .main,
+     .about {
+      padding: 2.0625em;
+      width: 100%; }
+     h1 {
+      font-size: 3.5em; }
+     .main .copy {
+      margin-top: 1em;
+      margin-bottom: 1.5em; }
+     .progress,
+     .start {
+      width: 100%;
+      font-size: 200%; }
+     .about .copy {
+      font-size: 140%; }
+     .about .close {
+      top: 2.7em; }
+     footer {
+      padding: 0 2.0625em 2.0625em;
+      width: 100%; }
+       footer .sharing {
+        float: right;
+        margin-bottom: 0; }
+       footer .credits {
+        width: 70%; }
+  .in-app .panel {
+    display: none; }
+  .in-app .panel.visible {
+    display: block !important; } }
+
+@media screen and (max-width: 800px) and (orientation: landscape) {
+   .about .copy {
+    font-size: 100%; }
+   .main .illustration {
+    display: none; }
+   .main .main-content {
+    padding-top: 0; } }
+
+@media screen and (max-width: 320px) and (max-height: 500px) {
+  .about .copy {
+    font-size: 130%; } }
+
+@media screen and (min-width: 2100px) {
+  html {
+    font-size: 21px; } }
+
+@media screen and (max-width: 2000px) {
+  html {
+    font-size: 20px; } }
+
+@media screen and (max-width: 1900px) {
+  html {
+    font-size: 19px; } }
+
+@media screen and (max-width: 1800px) {
+  html {
+    font-size: 18px; } }
+
+@media screen and (max-width: 1700px) {
+  html {
+    font-size: 17px; } }
+
+@media screen and (max-width: 1500px) {
+  html {
+    font-size: 16px; } }
+
+@media screen and (max-width: 1300px) {
+  html {
+    font-size: 15px; } }
+
+@media screen and (max-width: 1100px) {
+  html {
+    font-size: 14px; } }
+
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 13px; } }
+
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 13px; } }
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 12px; } }
+
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 11px; } }
+
+@media screen and (max-width: 450px) {
+  html {
+    font-size: 10px; } }
+
+@media screen and (max-width: 350px) {
+  html {
+    font-size: 9px; } }
+
+    a{
+      color: #383838;
+    }
+    .title {
+      margin-top: 0.3em;
+    font-family: 'AlternateGothic3';
+    text-transform: uppercase;
+    font-weight: normal;
+    line-height: 1; }
+   h1 {
+    font-size: 4em; }
+   h2 {
+    font-size: 3.75em; }
   </style>
 
 </head>
 
 <body>
+  <div class="sideborder" data-ref="border"></div>
+  <div class="leftContainer" id="letfCover">
+    <div class="main">
+      <img class="titleImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Blue_Star_primary_logo.png/1200px-Blue_Star_primary_logo.png?20200505065905" />
+      <h1 class="title">Bluestar Success Stories</h1>
+      <p class="copy">Step inside the interactive map to see <strong>Bluestars Success</strong> stories spread across the country.</p>
+      <div class="start" data-ref="start" style="display: block;">Enter the map</div>
+     
+    </div>
+    <footer data-ref="titlescreen_footer">
+      <div class="sharing">
+        <div class="icons">
+          <a class="icon social_t" data-ref="sharing" href="https://twitter.com/BlueStarLtd" target="_blank"></a>
+          <a class="icon social_f" data-ref="sharing" href="https://www.facebook.com/BlueStarLimited/" target="_blank"></a>
+          <a class="icon social_l" data-ref="sharing" href="https://www.linkedin.com/company/blue-star-limited/" target="_blank"></a>
+        </div>
+      </div>
+      <div class="credits">
+        Made by <strong><a href="http://www.skilliza.com">Skilliza</a></strong>, a digital studio specialized in Immersive & WebGL experiences.
+      </div>
+    </footer>
+  </div>
+   <div class="coverAll" id="cover">
+
+  </div>
   <!-- Vertically centered scrollable modal -->
   <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
@@ -38,16 +367,32 @@
       </div>
     </div>
   </div>
-
-  <div style="position: absolute;top: 0.5%;left:0.5%;z-index: 999;width: 300px;">
-
-    <div class="input-group">
+  
+  <div class="selectStyle">
+    <div class="input-group my-1">
+      <select class="form-select" aria-label="Division" id="division">
+        <option selected value=0>Select Division</option>
+        <option value="Commercial Air Conditioning">Commercial Air Conditioning</option>
+        <option value="MEP Projects">MEP Projects</option>
+        <option value="Service Projects">Service Projects</option>
+      </select>
+    </div>
+    <div class="input-group my-1">
+      <select class="form-select" aria-label="Product" id="product">
+        <option selected value=0>Select Product</option>
+        <option value="VRF">VRF</option>
+        <option value="Chiller">Chiller</option>
+        <option value="Inverter Ducted">Inverter Ducted</option>
+      </select>
+    </div>
+    <div class="input-group my-1">
       <select class="form-select" aria-label="State" id="stateSelect">
         <option selected value="Select State">Select State</option>
       </select>
 
       <button class="btn btn-primary" type="button" id="showAll">Show All</button>
     </div>
+    
   </div>
 
   <div id="map"></div>

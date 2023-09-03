@@ -2,12 +2,35 @@
 <html>
 
 <head>
+  <title>BLUESTAR SUCCESS STORIES</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap" rel="stylesheet">
   <style>
+ 
+
+@font-face {
+  font-family: 'Miso';
+  src: url("../fonts/Miso.woff2") format("woff2"), url("../fonts/Miso.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Miso';
+  src: url("../fonts/Miso-Bold.woff2") format("woff2"), url("../fonts/Miso-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'AlternateGothic3';
+  src: url("assets/fonts/Alternate\ Gothic\ No2\ D\ Regular.ttf") format("ttf"), url("assets/fonts/Alternate\ Gothic\ No2\ D\ Regular.ttf") format("woff");;
+  font-weight: normal;
+  font-style: normal; }
     * {
       padding: 0;
       margin: 0;
@@ -37,6 +60,7 @@
       z-index: 999;
     }
     .main{
+      font-family: 'Work Sans', sans-serif;
       position: absolute;
     top: 0;
     left: 0;
@@ -62,35 +86,35 @@
       z-index: 998;
     }
    .titleImg {
-    width: 80%;
+    width: 40%;
 }
 
 .hidden {
       width: 0em;
       pointer-events: none; }
 .copy {
-    margin-top: 1.7em;
+  font-family: 'Work Sans', sans-serif;
+    margin-top: 0.5em;
     font-size: 1.5em;
-    margin-bottom: 1.7em;
+    margin-bottom: 0.5em;
     line-height: 1.65;
 }
 .start:hover {
-    background: #1b5ea5;
+    background: #e6df22;
 }
 
 .start {
   display: none;
     cursor: pointer;
-    background: #004EA0;
+    background: #fff725;
     text-transform: uppercase;
-    font-size: 1.4em;
+    font-size: 1.8em;
     line-height: 1.8em;
     display: block;
-    padding: 0.22em 0.45em 0.2em;
+    padding: 0.2em 0.45em 0.2em;
     text-align: center;
     width: 80%;
-    font-weight: bold;
-    color: white;
+    font-family: 'AlternateGothic3';
 }
 .sideborder {
     position: absolute;
@@ -147,6 +171,34 @@ footer {
         @media screen and (min-width: 800px) {
    .illustration {
     display: none; } }
+  .sharing {
+    margin-bottom: 1em; }
+  .sharing:before,.sharing:after {
+      content: " ";
+      display: table; }
+  .sharing:after {
+      clear: both; }
+  .sharing .icons:before,.sharing .icons:after {
+      content: " ";
+      display: table; }
+  .sharing .icons:after {
+      clear: both; }
+  .sharing .icon {
+      height: 3em;
+      width: 3em;
+      float: left;
+      background: url("assets/sharing.png") no-repeat;
+      background-size: auto 100%;
+      opacity: 0.25;
+      cursor: pointer; }
+    .sharing .icon.social_t {
+        background-position: 0 0; }
+    .sharing .icon.social_f {
+        background-position: 50% 0; }
+    .sharing .icon.social_l {
+        background-position: 100% 0; }
+    .sharing .icon:hover {
+        opacity: 0.8; }
 
 @media screen and (max-width: 800px) {
    
@@ -255,6 +307,20 @@ footer {
 @media screen and (max-width: 350px) {
   html {
     font-size: 9px; } }
+
+    a{
+      color: #383838;
+    }
+    .title {
+      margin-top: 0.3em;
+    font-family: 'AlternateGothic3';
+    text-transform: uppercase;
+    font-weight: normal;
+    line-height: 1; }
+   h1 {
+    font-size: 4em; }
+   h2 {
+    font-size: 3.75em; }
   </style>
 
 </head>
@@ -264,14 +330,21 @@ footer {
   <div class="leftContainer" id="letfCover">
     <div class="main">
       <img class="titleImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Blue_Star_primary_logo.png/1200px-Blue_Star_primary_logo.png?20200505065905" />
-      <p class="copy">Blue Star Ltd is an Indian multinational <strong>home appliances company </strong>, headquartered in <strong>Mumbai</strong>. </p>
+      <h1 class="title">Bluestar Success Stories</h1>
+      <p class="copy">Step inside the interactive map to see <strong>Bluestars Success</strong> stories spread across the country.</p>
       <div class="start" data-ref="start" style="display: block;">Enter the map</div>
      
     </div>
     <footer data-ref="titlescreen_footer">
-     
+      <div class="sharing">
+        <div class="icons">
+          <a class="icon social_t" data-ref="sharing" href="https://twitter.com/BlueStarLtd" target="_blank"></a>
+          <a class="icon social_f" data-ref="sharing" href="https://www.facebook.com/BlueStarLimited/" target="_blank"></a>
+          <a class="icon social_l" data-ref="sharing" href="https://www.linkedin.com/company/blue-star-limited/" target="_blank"></a>
+        </div>
+      </div>
       <div class="credits">
-        Made by <strong><a href="http://www.skilliza.com">Skilliza</a></strong>, a digital studio specialized in Map experiences. <a href="mailto:kinshuk@skilliza.com">Get in touch</a>
+        Made by <strong><a href="http://www.skilliza.com">Skilliza</a></strong>, a digital studio specialized in Immersive & WebGL experiences.
       </div>
     </footer>
   </div>
@@ -294,16 +367,32 @@ footer {
       </div>
     </div>
   </div>
-
+  
   <div class="selectStyle">
-
-    <div class="input-group">
+    <div class="input-group my-1">
+      <select class="form-select" aria-label="Division" id="division">
+        <option selected value=0>Select Division</option>
+        <option value="Commercial Air Conditioning">Commercial Air Conditioning</option>
+        <option value="MEP Projects">MEP Projects</option>
+        <option value="Service Projects">Service Projects</option>
+      </select>
+    </div>
+    <div class="input-group my-1">
+      <select class="form-select" aria-label="Product" id="product">
+        <option selected value=0>Select Product</option>
+        <option value="VRF">VRF</option>
+        <option value="Chiller">Chiller</option>
+        <option value="Inverter Ducted">Inverter Ducted</option>
+      </select>
+    </div>
+    <div class="input-group my-1">
       <select class="form-select" aria-label="State" id="stateSelect">
         <option selected value="Select State">Select State</option>
       </select>
 
       <button class="btn btn-primary" type="button" id="showAll">Show All</button>
     </div>
+    
   </div>
 
   <div id="map"></div>

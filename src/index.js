@@ -20,14 +20,20 @@ const markerCollection = collection(db, "markers");
 const statusQuery = query(markerCollection,where("status", "==", true));
 const markerSnapshot = await getDocs(statusQuery);
 
+var product = document.getElementById('product');
+var division = document.getElementById('division');
+product.style.display = 'none';
+var selectedDivision;
+var selectedProduct;
+
 // Initialize the map
 var map = L.map("map", {
   
-  minZoom: 5,
+  minZoom: 4,
   maxZoom: 12,
   zoomControl: false
 });
-map.setView([23, 78.9629], 5);
+map.setView([23.0760, 65.9629], 4.4);
 // Create cluster options
 var clusterOptions = {
   spiderfyOnMaxZoom: true,
@@ -69,20 +75,53 @@ var greenIcon = new L.Icon({
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
 });
+var blueIcon = new L.Icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+var yellowIcon = new L.Icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
 
 
 // Getting Markers and Add Markers
 var markers = [];
 const addMarker = async (markerSnapshot)=>{
   markers = [];
+  var icon;
   await markerSnapshot.docs.forEach((element) => {
+    
     if (element) {
       element = element.data();
-      markers.push(
-        L.marker([element.lat, element.long], { icon: greenIcon }).on('click', (e)=> {
-          viewPDF(element);
-      })
-      );
+     
+      if(element.division){
+        if(element.division === "Commercial Air Conditioning"){
+            icon = greenIcon;
+        }else if(element.division === "MEP Projects") {
+          icon = yellowIcon;
+        }else if(element.division === "Service Projects"){
+          icon = blueIcon;
+        }
+        markers.push(
+          L.marker([element.lat, element.long], { icon: icon }).on('click', (e)=> {
+            viewPDF(element);
+        })
+        );
+      }
+      
     }
   });
 
@@ -98,7 +137,7 @@ map.addLayer(markerCluster);
 
 }
 
-addMarker(markerSnapshot);
+  addMarker(markerSnapshot);
 
 //get State 
 var states = [];
@@ -112,7 +151,7 @@ const getState = async () => {
     stateSelect.options[stateSelect.options.length] = new Option(states[i].name, states[i].id);
  }
 }
-getState();
+ getState();
 
 
 //get data based on state
@@ -127,12 +166,21 @@ const onStateChange = async () => {
   let Query;
   let markerSnapshotLocal;
   if(stateSelect.value != "Select State"){
-     Query = query(markerCollection,where("state", "==", selectedState.name),where("status", "==", true));
-     markerSnapshotLocal = await getDocs(Query);
+    if(selectedProduct != 0){
+      console.log(0);
+      Query = query(markerCollection,where("product", "==", selectedProduct),where("state", "==", selectedState.name),where("division", "==", selectedDivision),where("status", "==", true));
+    }else if(selectedDivision != 0){
+      console.log(1);
+      Query = query(markerCollection,where("division", "==", selectedDivision),where("state", "==", selectedState.name),where("status", "==", true));
+    }else{
+      console.log(2);
+      Query = query(markerCollection,where("state", "==", selectedState.name),where("status", "==", true));
+    }
+
+      markerSnapshotLocal = await getDocs(Query);
      addMarker(markerSnapshotLocal);
+     if(markerSnapshotLocal.length > 0)
      map.setView([selectedState.latitude, selectedState.longitude], 7);
-  }else{
-    showAllMarker();
   }
 }
 
@@ -153,5 +201,37 @@ $(".start").click(function(){
     L.control.zoom({
       position: 'topright'
   }).addTo(map);
+  map.setView([23, 78.9629], 5);
   },1000)
 });
+
+
+
+const onDivisionChange = async (event) =>{
+  let Query;
+  let markerSnapshotLocal;
+  let value = event.target.value;
+  selectedDivision = value;
+  if(value === "Commercial Air Conditioning"){
+   
+    product.style.display = 'block';
+  }else{
+    product.style.display = 'none';
+  }
+  Query = query(markerCollection,where("division", "==", value),where("status", "==", true));
+  markerSnapshotLocal = await getDocs(Query);
+  addMarker(markerSnapshotLocal);
+  map.setView([23, 78.9629], 5);
+}
+const onProductChange = async (event) =>{
+  let Query;
+  let markerSnapshotLocal;
+  let value = event.target.value;
+  selectedProduct = value;
+  Query = query(markerCollection,where('division','==',selectedDivision),where("product", "==", value),where("status", "==", true));
+  markerSnapshotLocal = await getDocs(Query);
+  addMarker(markerSnapshotLocal);
+  map.setView([23, 78.9629], 5);
+}
+division.onchange = onDivisionChange;
+product.onchange = onProductChange;
