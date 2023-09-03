@@ -166,10 +166,11 @@ const onStateChange = async () => {
   let Query;
   let markerSnapshotLocal;
   if(stateSelect.value != "Select State"){
-    if(selectedProduct != 0){
+    console.log(selectedProduct,selectedDivision,selectedState);
+    if(selectedProduct != 0 && selectedProduct != undefined){
       console.log(0);
       Query = query(markerCollection,where("product", "==", selectedProduct),where("state", "==", selectedState.name),where("division", "==", selectedDivision),where("status", "==", true));
-    }else if(selectedDivision != 0){
+    }else if(selectedDivision != 0 && selectedDivision != undefined){
       console.log(1);
       Query = query(markerCollection,where("division", "==", selectedDivision),where("state", "==", selectedState.name),where("status", "==", true));
     }else{
@@ -179,7 +180,6 @@ const onStateChange = async () => {
 
       markerSnapshotLocal = await getDocs(Query);
      addMarker(markerSnapshotLocal);
-     if(markerSnapshotLocal.length > 0)
      map.setView([selectedState.latitude, selectedState.longitude], 7);
   }
 }
