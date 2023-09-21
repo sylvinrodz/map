@@ -23,9 +23,9 @@ const markerSnapshot = await getDocs(statusQuery);
 var product = document.getElementById('product');
 var division = document.getElementById('division');
 product.style.display = 'none';
-var selectedDivision;
-var selectedProduct;
-
+var selectedDivision = undefined;
+var selectedProduct = undefined;
+var selectedState = undefined;
 // Initialize the map
 var map = L.map("map", {
   
@@ -143,6 +143,7 @@ map.addLayer(markerCluster);
 var states = [];
 var stateSelect = document.getElementById('stateSelect');
 var showAll = document.getElementById('showAll');
+var submit = document.getElementById('submit');
 const getState = async () => {
   const response = await fetch('assets/json/india.json');
   const jsonresp = await response.json(); //extract JSON from the http response
@@ -162,34 +163,58 @@ const showAllMarker = async () => {
 }
 
 const onStateChange = async () => {
-   var selectedState = states.find((res)=> res.id == stateSelect.value);
-  let Query;
-  let markerSnapshotLocal;
-  if(stateSelect.value != "Select State"){
-    console.log(selectedProduct,selectedDivision,selectedState);
-    if(selectedProduct != 0 && selectedProduct != undefined){
-      console.log(0);
-      Query = query(markerCollection,where("product", "==", selectedProduct),where("state", "==", selectedState.name),where("division", "==", selectedDivision),where("status", "==", true));
-    }else if(selectedDivision != 0 && selectedDivision != undefined){
-      console.log(1);
-      Query = query(markerCollection,where("division", "==", selectedDivision),where("state", "==", selectedState.name),where("status", "==", true));
-    }else{
-      console.log(2);
-      Query = query(markerCollection,where("state", "==", selectedState.name),where("status", "==", true));
-    }
+  if(stateSelect.value != 0)
+  selectedState = states.find((res)=> res.id == stateSelect.value);
+  else
+  selectedState = undefined;
 
-      markerSnapshotLocal = await getDocs(Query);
-     addMarker(markerSnapshotLocal);
-     map.setView([selectedState.latitude, selectedState.longitude], 7);
-  }
+  // let Query;
+  // let markerSnapshotLocal;
+  // if(stateSelect.value != "Select State"){
+    
+  //   if(selectedProduct != 0 && selectedProduct != undefined){
+  //     Query = query(markerCollection,where("product", "==", selectedProduct),where("state", "==", selectedState.name),where("division", "==", selectedDivision),where("status", "==", true));
+  //   }else if(selectedDivision != 0 && selectedDivision != undefined){
+  //     Query = query(markerCollection,where("division", "==", selectedDivision),where("state", "==", selectedState.name),where("status", "==", true));
+  //   }else{
+  //     Query = query(markerCollection,where("state", "==", selectedState.name),where("status", "==", true));
+  //   }
+
+  //   //   markerSnapshotLocal = await getDocs(Query);
+  //   //  addMarker(markerSnapshotLocal);
+  //   //  map.setView([selectedState.latitude, selectedState.longitude], 7);
+  // }
 }
 
+const submitClick = async ()=>{
+   let Query;
+  let markerSnapshotLocal;
+  if(selectedProduct && selectedDivision && selectedState){
+    Query = query(markerCollection,where("product", "==", selectedProduct),where("state", "==", selectedState.name),where("division", "==", selectedDivision),where("status", "==", true));
+  
+  }else if(selectedDivision && selectedState){
+    Query = query(markerCollection,where("division", "==", selectedDivision),where("state", "==", selectedState.name),where("status", "==", true));
+    
+  }else if(selectedProduct && selectedDivision){
+    Query = query(markerCollection,where("division", "==", selectedDivision),where("product", "==", selectedProduct),where("status", "==", true));
+  }else if(selectedState){
+    Query = query(markerCollection,where("state", "==", selectedState.name),where("status", "==", true));
+ 
+  }else if(selectedDivision){
+    Query = query(markerCollection,where("division", "==", selectedDivision),where("status", "==", true));
+ 
+  }
+  
+      markerSnapshotLocal = await getDocs(Query);
+     addMarker(markerSnapshotLocal);
+     if(selectedState)
+     map.setView([selectedState.latitude, selectedState.longitude], 7);
+}
 stateSelect.addEventListener("change", onStateChange);
 showAll.addEventListener("click",showAllMarker);
-
+submit.addEventListener("click",submitClick)
 //Animation
 $(".start").click(function(){
-  console.log("click");
   $(".leftContainer").addClass("hidden");
   setTimeout(() => {
     $(".sideborder").addClass("hidden");
@@ -208,30 +233,40 @@ $(".start").click(function(){
 
 
 const onDivisionChange = async (event) =>{
-  let Query;
-  let markerSnapshotLocal;
+  // let Query;
+  // let markerSnapshotLocal;
   let value = event.target.value;
-  selectedDivision = value;
+  if(value != 0){
+    selectedDivision = value;
   if(value === "Commercial Air Conditioning"){
    
     product.style.display = 'block';
   }else{
+    selectedProduct = undefined;
     product.style.display = 'none';
   }
-  Query = query(markerCollection,where("division", "==", value),where("status", "==", true));
-  markerSnapshotLocal = await getDocs(Query);
-  addMarker(markerSnapshotLocal);
-  map.setView([23, 78.9629], 5);
+  }else{
+    selectedDivision = undefined;
+  }
+  
+  // Query = query(markerCollection,where("division", "==", value),where("status", "==", true));
+  // markerSnapshotLocal = await getDocs(Query);
+  // addMarker(markerSnapshotLocal);
+  // map.setView([23, 78.9629], 5);
 }
 const onProductChange = async (event) =>{
-  let Query;
-  let markerSnapshotLocal;
+  // let Query;
+  // let markerSnapshotLocal;
   let value = event.target.value;
+  if(value != 0){
   selectedProduct = value;
-  Query = query(markerCollection,where('division','==',selectedDivision),where("product", "==", value),where("status", "==", true));
-  markerSnapshotLocal = await getDocs(Query);
-  addMarker(markerSnapshotLocal);
-  map.setView([23, 78.9629], 5);
+  }else{
+    selectedProduct = undefined;
+  }
+  // Query = query(markerCollection,where('division','==',selectedDivision),where("product", "==", value),where("status", "==", true));
+  // markerSnapshotLocal = await getDocs(Query);
+  // addMarker(markerSnapshotLocal);
+  // map.setView([23, 78.9629], 5);
 }
 division.onchange = onDivisionChange;
 product.onchange = onProductChange;
